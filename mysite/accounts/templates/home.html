@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        a.logout-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e11d48;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a.logout-btn:hover {
+            background-color: #be123c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if request.user.is_authenticated %}
+            <h2>Welcome, {{ request.user.username }} 👋</h2>
+            <p>You are now logged in to your dashboard.</p>
+            <a class="logout-btn" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <h2>You are not logged in.</h2>
+            <a class="logout-btn" href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+</body>
+</html>
